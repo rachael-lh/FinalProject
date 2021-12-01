@@ -55,5 +55,29 @@ def insert():
         flash("Details inserted successfully")
         return redirect(url_for('index'))
 
+
+@app.route('/update', methods = ['GET', 'POST'])
+def update():
+    if request.method == 'POST':
+        my_data = User_Data.query.get(request.form.get('id'))
+
+        my_data.name = request.form['name']
+        my_data.email = request.form['email']
+      #  my_data.password = request.form['password']
+
+        db.session.commit()
+        flash("User information updated successfully!")
+
+        return redirect(url_for('index'))
+
+@app.route('/delete/<id>/', methods = ['GET', 'POST'])
+def delete(id):
+    my_data = User_Data.query.get(id)
+    db.session.delete(my_data)
+    db.session.commit()
+    flash("User Deleted Successfully")
+ 
+    return redirect(url_for('index'))
+
 if __name__ == "__main__":
     app.run(debug=True)
