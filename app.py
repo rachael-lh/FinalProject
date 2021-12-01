@@ -33,7 +33,9 @@ class User_Goals(db.Model):
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    all_data = User_Data.query.all()
+
+    return render_template("index.html", users = all_data)
 
 
 @app.route('/insert', methods = ['POST'])
