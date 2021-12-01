@@ -47,11 +47,14 @@
  
                     </tr>
 
+                    {% for row in users %}
+
+
                     <tr>
-                        <td>01</td>
-                        <td>Rach</td>
-                        <td>rach@gmail</td>
-                        <td>098765</td>
+                        <td>{{row.id}}</td>
+                        <td>{{row.name}}</td>
+                        <td>{{row.email}}</td>
+                        <td>{{row.password}}</td>
 
                         <td> 
                             <a href="" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit">Edit</a>
@@ -130,6 +133,7 @@
 
 
                     </div>
+                     {% endfor %}
                 </table>
 
             </div>
