@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask (__name__)
@@ -50,7 +50,7 @@ def insert():
         db.session.add(my_data)
         db.session.commit()
  
- 
+        flash("Details inserted successfully")
         return redirect(url_for('index'))
 
 if __name__ == "__main__":
