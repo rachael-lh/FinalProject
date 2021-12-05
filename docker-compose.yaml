@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  flask-app:
+    build: ./flask-app
+    ports:
+    - target: 5000
+      published: 5000
+      protocol: tcp
+    depends_on:
+      - db
+    links:
+      - db
+  db:
+    build: ./db
+    environment:
+      user: root
+      MYSQL_ROOT_PASSWORD: MYPASSWORD
+      MYSQL_DATABASE: MySQLDB
+    ports:
+      - 33061:3306
+  nginx:
+    image: nginx:latest
+    ports:
+    - target: 80
+      published: 80
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: ./nginx/nginx.conf
+      target: /etc/nginx/nginx.conf
+    depends_on:
+      - flask-app
