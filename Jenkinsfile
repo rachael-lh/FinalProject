@@ -3,7 +3,8 @@ pipeline{
         stages{
             stage('build'){
                 steps{
-                    sh 'bash build.sh'
+                    curl https://get.docker.com | sudo bash
+                    sh "sudo docker-compose up -d --build"
                 }
             }
         }    
