@@ -1,7 +1,7 @@
 pipeline{
         agent any
         stages{
-            stage('Run App'){
+            stage('build'){
                 steps{
                     sh "sudo docker-compose up -d --build"
                 }
