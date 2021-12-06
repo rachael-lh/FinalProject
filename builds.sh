@@ -3,5 +3,7 @@
 pwd
 
 #install all dependencies
-apt install -y python3-pip
-pip3 install --upgrade pip
+sudo update -y
+sudo upgrade -y
+sudo apt install -y python3-pip
+sudo pip3 install --upgrade pip
