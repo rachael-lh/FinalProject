@@ -3,8 +3,9 @@ pipeline{
         stages{
             stage('build'){
                 steps{
-                    sh 'chmod +x ./builds.sh'
-                    sh './builds.sh'
+                   sh 'docker-compose up -d'
+                   // sh 'chmod +x ./builds.sh'
+                   // sh './builds.sh'
                 }
             }
         }    
