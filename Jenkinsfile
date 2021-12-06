@@ -3,7 +3,8 @@ pipeline{
         stages{
             stage('build'){
                 steps{
-                   sh 'docker-compose up -d'
+                   sh 'docker build -t flask-app-finalproject .'
+                   // -compose up -d'
                    // sh 'chmod +x ./builds.sh'
                    // sh './builds.sh'
                 }
