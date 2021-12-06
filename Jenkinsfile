@@ -8,7 +8,7 @@ pipeline{
                     //sh "sudo upgrade -y"
                     sh "sudo apt install -y python3-pip"
                     sh "sudo pip3 install --upgrade pip"
-                    sh "sudo pip install docker-compose"
+                    sh "sudo pip3 install docker-compose"
                     sh "sudo docker-compose up -d --build"
                 }
             }
