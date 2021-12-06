@@ -1,9 +1,6 @@
-#!/bin/bash
-#check the location
-pwd
-
-#install all dependencies
-sudo update -y
-sudo upgrade -y
-sudo apt install -y python3-pip
-sudo pip3 install --upgrade pip
+sudo chmod +x /usr/local/bin/docker-compose
+sudo usermod -aG docker $(whoami)
+sudo usermod -aG docker jenkins
+sudo chmod 666 /var/run/docker.sock
+docker-compose down --rmi all
+docker-compose build
