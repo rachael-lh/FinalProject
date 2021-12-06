@@ -4,4 +4,4 @@ pwd
 
 #install all dependencies
 pip3 install --upgrade docker
-docker build -t flask-app-finalproject.
+docker build -t flask-app-finalproject .
