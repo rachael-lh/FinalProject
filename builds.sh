@@ -1,4 +1,6 @@
 #!/bin/bash
+#check the location
+pwd
 
 #install all dependencies
 sudo update -y
