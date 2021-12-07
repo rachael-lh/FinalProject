@@ -1,7 +1,7 @@
 version: "3.8"
 services:
-  flask-app:
-    build: ./flask-app
+  flaskapp:
+    build: ./flaskapp
     ports:
     - target: 5000
       published: 5000
@@ -29,4 +29,4 @@ services:
       source: ./nginx/nginx.conf
       target: /etc/nginx/nginx.conf
     depends_on:
-      - flask-app
+      - flaskapp
