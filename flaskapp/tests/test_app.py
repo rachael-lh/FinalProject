@@ -6,22 +6,21 @@ from app import app, db, Users
 
 class TestBase(TestCase):
     def create_app(self):
-            
+        app.config.update(SQLALCHEMY_DATABASE_URI="sqlite:///",
+                secret_key='Secret Key',
+                DEBUG=True
+                )        
         return app
 
-class TestBase(TestCase):
-    def create_app(self):
-        return app
-
-def setUp(self):
+    def setUp(self):
         db.session.commit()
         db.drop_all()
         db.create_all()
 
         # Creating a test list
         sample1 = Users(
-            full_name = "Sam Arm",
-            email = "SamA@gmail.com",
+            full_name = "Tester",
+            email = "Tester@gmail.com",
             user_password = "07914757867",
         )
 
@@ -29,7 +28,7 @@ def setUp(self):
         db.session.add(sample1)
         db.session.commit()
 
-def tearDown(self):
+    def tearDown(self):
 
         db.session.remove()
         db.drop_all()
