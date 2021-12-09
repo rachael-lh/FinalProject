@@ -11,12 +11,12 @@ db = SQLAlchemy(app)
 
 class Users(db.Model):
     full_name = db.Column(db.String(100), primary_key = True, nullable=False)
-    email = db.Column(db.String(100), nullable=False)
+    #email = db.Column(db.String(100), nullable=False)
     user_password = db.Column(db.String(100), nullable=False)
     BobaT = db.relationship('usergoals', backref='users', lazy=True)
-    def __init__(self, full_name, email, user_password):
+    def __init__(self, full_name, user_password):
         self.full_name = full_name
-        self.email = email
+        #self.email = email
         self.user_password = user_password
 
 class usergoals(db.Model):
@@ -35,8 +35,7 @@ class usergoals(db.Model):
 def index():
     users_data = Users.query.all()
     usergoals_data = usergoals.query.all()
-   # usergoals_rachael = usergoals.query.where(usergoals_data.username == users_data.full_name)
-
+    #usergoals_rachael = usergoals.query.where(usergoals_data.username == users_data.full_name)
     return render_template("index.html", users = users_data, goals = usergoals_data)
 
 @app.route('/update', methods = ['GET', 'POST'])
@@ -55,22 +54,41 @@ def update():
 
 @app.route('/insert', methods = ['POST'])
 def insert():
- 
+    
     if request.method == 'POST':
+        exists = db.session.query(Users.full_name).filter_by(full_name=request.form['username']).scalar() is not None
+        if exists == True:
  
 
-        goals = request.form['goals']
-        date_started = request.form['date_started']
-        date_endgoal = request.form['date_endgoal']
-        username = request.form['username']
+            goals = request.form['goals']
+            date_started = request.form['date_started']
+            date_endgoal = request.form['date_endgoal']
+            username = request.form['username']
+
+            my_data = usergoals(goals, date_started, date_endgoal, username)
+            db.session.add(my_data)
+            db.session.commit()
  
+            flash("Details inserted successfully")
+            return redirect(url_for('index'))
+        else:
+            full_name = request.form['username']
+            my_data = Users(full_name,'ergrgh')
+            db.session.add(my_data)
+            db.session.commit()
+
+            goals = request.form['goals']
+            date_started = request.form['date_started']
+            date_endgoal = request.form['date_endgoal']
+            username = request.form['username']
+
+            my_data = usergoals(goals, date_started, date_endgoal, username)
+            db.session.add(my_data)
+            db.session.commit()
  
-        my_data = usergoals(goals, date_started, date_endgoal, username)
-        db.session.add(my_data)
-        db.session.commit()
- 
-        flash("Details inserted successfully")
-        return redirect(url_for('index'))
+            flash("Details inserted successfully")
+            return redirect(url_for('index'))
+
 
 
 
