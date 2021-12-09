@@ -16,6 +16,8 @@ services:
       user: root
       MYSQL_ROOT_PASSWORD: MYPASSWORD
       MYSQL_DATABASE: MySQLDB
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
     ports:
       - 33061:3306
   nginx:

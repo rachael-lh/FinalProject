@@ -3,4 +3,5 @@ FROM mysql:5.7
 ENV MYSQL_DATABASE=MySQLDB
 ENV MYSQL_ROOT_PASSWORD=MYPASSWORD
 
-COPY CreateTable.sql /docker-entrypoint-initdb.d/
+#COPY CreateUsersTable.sql /docker-entrypoint-initdb.d/
+COPY CreateUserGoalsTable.sql /docker-entrypoint-initdb.d/

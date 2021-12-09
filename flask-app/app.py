@@ -19,7 +19,16 @@ class Users(db.Model):
         self.email = email
         self.user_password = user_password
 
-
+class User_Goals(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    _id = db.Column(db.Integer)
+    Goal = db.Column(db.String(100))
+    Date_Started = db.Column(db.String(100))
+    Date_Endgoal = db.Column(db.String(100))
+    def __init__(self, Goal, Date_Started, Date_Endgoal):
+        self.Goal = Goal
+        self.Date_Started = Date_Started
+        self.Date_endgoal = Date_Endgoal
 
 @app.route('/')
 def index():
@@ -47,11 +56,12 @@ def insert():
     if request.method == 'POST':
  
         name = request.form['name']
-        email = request.form['email']
-        phone = request.form['phone']
+        Goals = request.form['goals']
+        Date_Started = request.form['datestarted']
+        Date_endgoal = request.form['dateend']
  
- 
-        my_data = Users(name, email, phone)
+        my_data = Users(name)
+        my_data = User_Goals(Goals, Goals, Date_Started, Date_endgoal)
         db.session.add(my_data)
         db.session.commit()
  

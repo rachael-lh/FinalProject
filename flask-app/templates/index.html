@@ -15,7 +15,7 @@
  
             <div class="jumbotron p-3">
  
-                <h2>Please <b>write your goal here </b>  <button type="button"  class="btn btn-success float-right"
+                <h2>Hey! <b> Please write your goal here: </b>  <button type="button"  class="btn btn-success float-right"
                 data-toggle="modal" data-target="#mymodal">Add New GOAL!</button> </h2>
                
                {% with messages = get_flashed_messages() %}
@@ -44,19 +44,19 @@
  
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Action</th>
+                        <th>Goal</th>
+                        <th>Date_Started</th>
+                        <th>Date_Endgoal</th>
  
                     </tr>
 
-                    {% for row in users %}
+                    {% for row in User_Goals %}
 
                     <tr>
                         <td>{{row.id}}</td>
-                        <td>{{row.full_name}}</td>
-                        <td>{{row.email}}</td>
-                        <td>{{row.user_password}}</td>
+                        <td>{{row.Goal}}</td>
+                        <td>{{row.Date_Started}}</td>
+                        <td>{{row.Date_Endgoal}}</td>
 
                         <td> 
                             <a href="/update/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.id}}">Edit</a>
@@ -85,7 +85,7 @@
                       
                                        <label>Name:</label>
                                        <input type='hidden' name='id' value="{{row.id}}">
-                                       <input type="text" class="form-control" name="name" value="{{row.full_name}}">
+                                       <input type="text" class="form-control" name="name" value="{{row.Goal}}">
                       
                       
                                     </div>
@@ -93,9 +93,9 @@
                                     <div class="form-group">
          
          
-                                        <label>Email:</label>
+                                        <label>Goal:</label>
                        
-                                        <input type="email" class="form-control" name="email" value="{{row.email}}">
+                                        <input type="goal" class="form-control" name="goal" value="{{row.Goal}}">
                        
                        
                                      </div>
@@ -104,12 +104,22 @@
                                      <div class="form-group">
                        
                        
-                                        <label>Phone:</label>
+                                        <label>Start Date:</label>
                        
-                                        <input type="number" class="form-control" name="phone" value="{{row.user_password}}">
+                                        <input type="Startdate" class="form-control" name="startdate" value="{{row.Date_Started}}">
                        
                        
                                      </div>
+
+                                     <div class="form-group">
+                       
+                       
+                                       <label>End Date:</label>
+                      
+                                       <input type="enddate" class="form-control" name="enddate" value="{{row.Date_Endgoal}}">
+                      
+                      
+                                    </div>
                        
                        
                                      <div class="form-group">
@@ -145,7 +155,7 @@
                       <div class="modal-header">
               
               
-                         <h4 class="modal-title">Add Employee</h4>
+                         <h4 class="modal-title">Edit goal</h4>
                       </div>
               
               
@@ -167,9 +177,9 @@
                             <div class="form-group">
  
  
-                                <label>Email:</label>
+                                <label>Goal:</label>
                
-                                <input type="email" class="form-control" name="email" required="1">
+                                <input type="goal" class="form-control" name="goal" required="1">
                
                
                              </div>
@@ -178,14 +188,23 @@
                              <div class="form-group">
                
                
-                                <label>Phone:</label>
+                                <label>Date Started:</label>
                
-                                <input type="number" class="form-control" name="phone" required="1">
+                                <input type="datestart" class="form-control" name="datestart" required="1">
                
                
                              </div>
+
+                             <div class="form-group">
                
                
+                              <label>End date:</label>
+             
+                              <input type="enddate" class="form-control" name="d" required="1">
+             
+             
+                           </div>
+
                              <div class="form-group">
                
                
