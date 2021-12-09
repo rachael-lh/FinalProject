@@ -13,7 +13,7 @@ class Users(db.Model):
     full_name = db.Column(db.String(100), primary_key = True, nullable=False)
     #email = db.Column(db.String(100), nullable=False)
     user_password = db.Column(db.String(100), nullable=False)
-    BobaT = db.relationship('usergoals', backref='users', lazy=True)
+    goals_relationship = db.relationship('usergoals', backref='users', lazy=True)
     def __init__(self, full_name, user_password):
         self.full_name = full_name
         #self.email = email
@@ -35,7 +35,6 @@ class usergoals(db.Model):
 def index():
     users_data = Users.query.all()
     usergoals_data = usergoals.query.all()
-    #usergoals_rachael = usergoals.query.where(usergoals_data.username == users_data.full_name)
     return render_template("index.html", users = users_data, goals = usergoals_data)
 
 @app.route('/update', methods = ['GET', 'POST'])
