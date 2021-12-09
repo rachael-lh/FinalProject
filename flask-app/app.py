@@ -33,6 +33,7 @@ class User_Goals(db.Model):
 @app.route('/')
 def index():
     all_data = Users.query.all()
+    all_data = User_Goals.query.all() 
 
     return render_template("index.html", users = all_data)
 
