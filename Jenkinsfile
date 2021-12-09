@@ -1,7 +1,7 @@
 pipeline{
         agent any
         stages{
-            stage('build'){
+            stage('Build'){
                 steps{
                   // sh 'usermod -G docker jenkins'
                    //sh 'chmod 666 /var/run/docker.sock'

@@ -3,5 +3,13 @@
 pwd
 
 #install all dependencies
-pip3 install --upgrade docker
-docker build -t flask-app-finalproject .
+sudo update -y
+sudo upgrade -y
+sudo apt install python3-pip
+sudo pip3 install --upgrade pip
+
+cd flask-app
+pip3 install -r requirements.txt
+sudo usermod -aG docker $(whoami)
+cd ..
+docker-compose up -d
