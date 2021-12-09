@@ -51,22 +51,21 @@
  
                     </tr>
 
-                    {% for user in users %}
                     {% for goal in goals %}
                     <tr>
-                        <td>{{goal.userid}}</td>
-                        <td>{{goal.full_name}}</td>
+                        <td>{{goal.id}}</td>
+                        <td>{{goal.username}}</td>
                         <td>{{goal.goals}}</td>
                         <td>{{goal.date_started}}</td>
                         <td>{{goal.date_endgoal}}</td>
 
                         <td> 
-                            <a href="/update/{{user.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{user.id}}">Edit</a>
-                            <a href="/delete/{{user.id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                            <a href="/update/{{goal.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{goal.id}}">Edit</a>
+                            <a href="/delete/{{goal.id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
                         </td>
                     
                     </tr> 
-                    <div id="modaledit{{user.id}}" class="modal fade" role="dialog">
+                    <div id="modaledit{{goal.id}}" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                            <div class="modal-content">
                               <div class="modal-header">
@@ -86,8 +85,8 @@
                       
                       
                                        <label>Name:</label>
-                                       <input type='hidden' name='id' value="{{user.id}}">
-                                       <input type="text" class="form-control" name="name" value="{{user.full_name}}">
+                                       <input type='hidden' name='id' value="{{goal.id}}">
+                                       <input type="text" class="form-control" name="name" value="{{goal.username}}">
                       
                       
                                     </div>
@@ -148,7 +147,6 @@
 
                     </div>
                      {% endfor %}
-                     {% endfor %}
                 </table>
 
             </div>
@@ -203,8 +201,8 @@
                            <div class="form-group">
               
               
-                              <label>UserID:</label>
-                              <input type="text" class="form-control" name="userid" required="1">
+                              <label>Username:</label>
+                              <input type="text" class="form-control" name="username" required="1">
                           
                           
                            </div>

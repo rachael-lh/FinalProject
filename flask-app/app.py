@@ -10,8 +10,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class Users(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    full_name = db.Column(db.String(100), nullable=False)
+    full_name = db.Column(db.String(100), primary_key = True, nullable=False)
     email = db.Column(db.String(100), nullable=False)
     user_password = db.Column(db.String(100), nullable=False)
     BobaT = db.relationship('usergoals', backref='users', lazy=True)
@@ -25,17 +24,18 @@ class usergoals(db.Model):
     goals = db.Column(db.String(100), nullable=False)
     date_started = db.Column(db.String(100), nullable=False)
     date_endgoal = db.Column(db.String(100), nullable=False)
-    userid = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False) 
-    def __init__(self, goals, date_started, date_endgoal, userid):
+    username = db.Column(db.String(100), db.ForeignKey('users.full_name'), nullable=False) 
+    def __init__(self, goals, date_started, date_endgoal, username):
         self.goals = goals
         self.date_started = date_started
         self.date_endgoal = date_endgoal
-        self.userid = userid
+        self.username = username
 
 @app.route('/')
 def index():
     users_data = Users.query.all()
     usergoals_data = usergoals.query.all()
+   # usergoals_rachael = usergoals.query.where(usergoals_data.username == users_data.full_name)
 
     return render_template("index.html", users = users_data, goals = usergoals_data)
 
@@ -62,10 +62,10 @@ def insert():
         goals = request.form['goals']
         date_started = request.form['date_started']
         date_endgoal = request.form['date_endgoal']
-        userid = request.form['userid']
+        username = request.form['username']
  
  
-        my_data = usergoals(goals, date_started, date_endgoal, userid)
+        my_data = usergoals(goals, date_started, date_endgoal, username)
         db.session.add(my_data)
         db.session.commit()
  
