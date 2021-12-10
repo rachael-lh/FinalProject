@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS usergoals
              (
                           id              INTEGER NOT NULL AUTO_INCREMENT,
-                          goals           VARCHAR(30) NOT NULL,
+                          goals           VARCHAR(100) NOT NULL,
                           date_started    VARCHAR(50) NOT NULL,
                           date_endgoal    VARCHAR(150) NOT NULL,
                           username        VARCHAR(30) NOT NULL,
@@ -12,6 +12,6 @@ CREATE TABLE IF NOT EXISTS usergoals
 
 LOCK TABLES `usergoals` WRITE;
 /*!40000 ALTER TABLE `usergoals` DISABLE KEYS */;
-INSERT INTO `usergoals` VALUES (1,'Hello','12/15/2021','11/12/2021','Ben'),(2,'Bye','Monday','Friday','Luke');
+INSERT INTO `usergoals` VALUES (1,'Create jenkins docker image','01/12/2021','07/12/2021','Ben'),(2,'Finish project','10/11/2021','10/12/2021','Luke');
 /*!40000 ALTER TABLE `usergoals` ENABLE KEYS */;
 UNLOCK TABLES;
