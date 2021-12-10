@@ -2,7 +2,7 @@ from unittest.mock import patch
 from flask import url_for
 from flask_testing import TestCase
 
-from app import app, db, Users
+from app import app, db, usergoals
 
 class TestBase(TestCase):
     def create_app(self):
@@ -18,10 +18,11 @@ class TestBase(TestCase):
         db.create_all()
 
         # Creating a test list
-        sample1 = Users(
-            full_name = "Tester",
-            email = "Tester@gmail.com",
-            user_password = "07914757867",
+        sample1 = usergoals(
+            goals = "Tester",
+            date_started= "Tuesday",
+            date_endgoal= "Friday",
+            username= "Ben"
         )
 
         # Save list to db
@@ -34,7 +35,12 @@ class TestBase(TestCase):
         db.drop_all()
 
 class TestResponse(TestBase):
-    def test_open_users(self):
+    def test_insert_endpoint_returns_405(self):
         response = self.client.get(url_for('insert'))
         self.assertEqual(response.status_code, 405)
         self.assertIn(b'', response.data)
+
+    def test_homepage_returns_200(self):
+        response = self.client.get()
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'', response.data)    
