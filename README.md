@@ -60,7 +60,7 @@ When I was provided with working access to Microsoft Azure, I was able to create
 
 The diagram below demonstrates the overall structure required from the application development and deployment alongside with the technologies used:
 
-<img width="672" alt="Pipeline" src="https://user-images.githubusercontent.com/92022019/145597992-43c11935-2ba2-436f-b847-2352a5666608.png">
+![Pipelines w T](https://user-images.githubusercontent.com/92022019/145613162-75793481-79de-4ccc-acf9-113f97712410.png)
 
 Step 1 - a connection was created between VSC and GitHub, this was done by cloning the GitHub repository using HTTPS to the local working directory. 
 
@@ -68,13 +68,13 @@ Step 2 - the flask application was then made locally and could be connected via 
 
 Step 3 - experiencing the limitations of Jenkins in Docker (noted above) caused a delay in producing the Jenkins Pipeline. However, once access was provided to Microsoft Azure, a connection was created between the Microsoft Azure Virtual Machine and VSC using a ssh key. This allowed for basic linux commands to be used enabling the installation of the required dependencies for Jenkins
 
-Step 4 - a basic Jenkins Pipeline is currently running and can be added upon. At the moment, there is a Build & Deploy stage which is successful allowing the webpage to be accessed on virtual machines' public ip address at port 5000. As the Jenkins Pipeline is connected to Github via a Webhook all pushes trigger a new build. 
+Step 4 - a basic Jenkins Pipeline is currently running and can be added upon. At the moment, there is a Test stage and a Build & Deploy stage. The Test stage has two unit tests testing that the endpoints have the expected response. The Build & Deploy stage allows for the images and containers to be built allowing the webpage to be accessed on virtual machines' public ip address at port 5000. As the Jenkins Pipeline is connected to Github via a Webhook all pushes trigger a new build. 
 
 <img width="782" alt="Webhook" src="https://user-images.githubusercontent.com/92022019/145593983-3b1b8279-332d-4cdf-a1b1-fb425d5ac533.png">
 
 <img width="807" alt="Github connected" src="https://user-images.githubusercontent.com/92022019/145593996-bd63dec6-aaba-4e4c-9a3b-44ea81de52a3.png">
 
-<img width="614" alt="Successful build" src="https://user-images.githubusercontent.com/92022019/145593595-47edd058-a615-4ff0-b74c-a47fd6532d64.png">
+<img width="578" alt="Screenshot 2021-12-10 at 17 10 31" src="https://user-images.githubusercontent.com/92022019/145613968-12b909af-80c6-4fed-b589-7e21c6867589.png">
 
 # Further Improvements 📈
 
