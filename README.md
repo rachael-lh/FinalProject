@@ -89,7 +89,7 @@ Although the project achieves the requirements set out in the project brief abov
   - Allows for privacy
 * Use of Docker Swarm to handle larger scale up usage. 
   - Makes an allowance for large volumes of traffic
-* Creation of tests to confirm the reliability of services available.
+* Creation of more tests to confirm the reliability of services available.
   - Errors will be highlighted before the build and deploy stage
 
 # Closing Statements 👋🏼
