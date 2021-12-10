@@ -26,13 +26,13 @@ Tools used to achieve the requirements are:
 
 For project tracking, I used GitHub Project - https://github.com/rachael-lh/FinalProject/projects/1. This is required to plan out what tasks are required to build, amend, test and deploy the application. GitHub Project allows these steps to be presented in a clear and orderly manner via a Kanban Board style. 
 
-The Kanban board is divided into 'to do' tasks, 'in progress' tasks and 'done' tasks. As the project management was detailed in GitHub this allowed me to link the related pull requests to the task noted on the board - allowing for the upmost clarity of whether a task has been successfully actioned. 
+The Kanban board is divided into 'to do' tasks, 'in progress' tasks and 'done' tasks. As the project management was detailed in GitHub this allowed me to link the related pull requests to the task noted on the board - allowing for the utmost clarity of whether a task has been successfully actioned. 
 
 <img width="1125" alt="Project Screenshot GH" src="https://user-images.githubusercontent.com/92022019/145603397-dd476567-e9cb-47bf-baab-eb84bc17e119.png">
 
 # Application Structure ⚙️
 
-I created a multi-service web application based on the Flask web framework. The application is a goal tracking application which allows users to input their details and add their goals. The application can *create* users, *read* user data from the MySQL database, *update* user goals and *delete* the user and goals demonstrating CRUD functionality. The user is able to do so by using the 'ADD NEW GOAL!', 'Edit' and 'Delete' button on the front page of the web application.
+I created a multi-service web application based on the Flask web framework. The application is a goal tracking application which allows users to input their details and add their goals. The application can *create* users, *read* user data from the MySQL database, *update* user goals and *delete* the user and goals demonstrating CRUD functionality. The user is able to do so by using the 'Add New GOAL!', 'Edit' and 'Delete' buttons on the front page of the web application.
 
 <img width="1329" alt="New goal" src="https://user-images.githubusercontent.com/92022019/145587440-97a5206f-839e-4b8d-92d9-54d97283bd9d.png">
 
@@ -42,7 +42,7 @@ I created a multi-service web application based on the Flask web framework. The 
 
 <img width="1401" alt="Successful delete" src="https://user-images.githubusercontent.com/92022019/145587790-106045c6-da8d-432d-8a5c-51826c42f915.png">
 
-The flask application connects to the MySQL database (hosted in Docker) via Python using MySQLAlchemy and Flask-SQLAlchemy. Using the routes created within the application, user information and goals is stored, edited and deleted from the database. Should the user not already exist within the database, a new user is created using an "IF" statement.
+The flask application connects to the MySQL database (hosted in Docker) via Python using MySQLAlchemy and Flask-SQLAlchemy. Using the routes created within the application, user information and goals are stored, edited and deleted from the database. Should the user not already exist within the database, a new user is created using an "IF" statement.
 
 <img width="420" alt="Application" src="https://user-images.githubusercontent.com/92022019/145571822-53e817b4-c20c-4078-b186-4f7bddc65db8.png">
 
@@ -52,7 +52,7 @@ As a macOS user, the recommended course of action was to install Jenkins via Doc
 
 Utilising the GitHub branching method, I worked on feature branch to attempt to circumvent these issues. I had to build the Pipeline manually each time without the Github connection. Using the official Jenkins image from Docker, I installed the Linux standard base and docker as seen here (https://github.com/rachael-lh/FinalProject/commit/b3e72956d9a56f5a26156ffb1c88aed6ca694023). This still did not circumvent the abovementioned issues and I was unable to implement a working Pipeline with Jenkins hosted in Docker. 
 
-When I was provided with working access to Microsoft Azure, I was able to create a Linux based Virtual Machine and install Jenkins using the a script file shown in VSC below:
+When I was provided with working access to Microsoft Azure, I was able to create a Linux based Virtual Machine and install Jenkins using the a script file shown in Visual Studio Code (VSC) below:
 
 <img width="848" alt="install-jenkins sh shown in VSC" src="https://user-images.githubusercontent.com/92022019/145577351-bb128a96-42ed-4901-877a-aa020c735134.png">
 
@@ -62,7 +62,7 @@ The diagram below demonstrates the overall structure required from the applicati
 
 <img width="672" alt="Pipeline" src="https://user-images.githubusercontent.com/92022019/145597992-43c11935-2ba2-436f-b847-2352a5666608.png">
 
-Step 1 - a connection was created between Visual Studio Code (VSC) and GitHub, this was done by cloning the GitHub repository using HTTPS to the local working directory. 
+Step 1 - a connection was created between VSC and GitHub, this was done by cloning the GitHub repository using HTTPS to the local working directory. 
 
 Step 2 - the flask application was then made locally and could be connected via http://localhost:port. The MySQL database (created in Docker) and flask application each used a unique port so that traffic could access the port. After the application could perform basic functionality, it was deployed first with Docker and then Docker-compose, and thus the database and flask application was containerised. 
 
@@ -81,9 +81,16 @@ Step 4 - a basic Jenkins Pipeline is currently running and can be added upon. At
 Although the project achieves the requirements set out in the project brief above, there are further improvements that can be made to optimise how the application is ran. For example, the following changes can be implemented:
 
 * Division of services - separation of the frontend and backend API. 
+   - Improves deployability and reliability of the services by isolating each services functions
+   - Allows for synchronous development on multiple services
 * Creation of a login/sign-up services - email and password syntax has already been placed into the database.
-* Use of Docker Swarm to scale up production. 
-* Creation of further tests to confirm the reliability of services available.
+  - Enables users to only see their own goals
+  - Creates a cleaner UI for the user
+  - Allows for privacy
+* Use of Docker Swarm to handle larger scale up usage. 
+  - Makes an allowance for large volumes of traffic
+* Creation of tests to confirm the reliability of services available.
+  - Errors will be highlighted before the build and deploy stage
 
 # Closing Statements 👋🏼
 
