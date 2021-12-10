@@ -10,12 +10,12 @@
 {% block body %}
 
 <div class="container">
-    <div class="row">
+    <div class="user">
         <div class="col md-12">
  
             <div class="jumbotron p-3">
  
-                <h2>Please <b>write your goal here </b>  <button type="button"  class="btn btn-success float-right"
+                <h2> <b>Please write your goal here: </b>  <button type="button"  class="btn btn-success float-right"
                 data-toggle="modal" data-target="#mymodal">Add New GOAL!</button> </h2>
                
                {% with messages = get_flashed_messages() %}
@@ -44,27 +44,28 @@
  
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
+                        <th>Goal</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
                         <th>Action</th>
  
                     </tr>
 
-                    {% for row in users %}
-
+                    {% for goal in goals %}
                     <tr>
-                        <td>{{row.id}}</td>
-                        <td>{{row.full_name}}</td>
-                        <td>{{row.email}}</td>
-                        <td>{{row.user_password}}</td>
+                        <td>{{goal.id}}</td>
+                        <td>{{goal.username}}</td>
+                        <td>{{goal.goals}}</td>
+                        <td>{{goal.date_started}}</td>
+                        <td>{{goal.date_endgoal}}</td>
 
                         <td> 
-                            <a href="/update/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.id}}">Edit</a>
-                            <a href="/delete/{{row.id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                            <a href="/update/{{goal.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{goal.id}}">Edit</a>
+                            <a href="/delete/{{goal.id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
                         </td>
                     
                     </tr> 
-                    <div id="modaledit{{row.id}}" class="modal fade" role="dialog">
+                    <div id="modaledit{{goal.id}}" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                            <div class="modal-content">
                               <div class="modal-header">
@@ -80,22 +81,13 @@
                                  <form action="{{url_for('update')}}" method="POST">
                       
                       
-                                    <div class="form-group">
-                      
-                      
-                                       <label>Name:</label>
-                                       <input type='hidden' name='id' value="{{row.id}}">
-                                       <input type="text" class="form-control" name="name" value="{{row.full_name}}">
-                      
-                      
-                                    </div>
         
                                     <div class="form-group">
          
          
-                                        <label>Email:</label>
+                                        <label>Goal:</label>
                        
-                                        <input type="email" class="form-control" name="email" value="{{row.email}}">
+                                        <input type="text" class="form-control" name="goals" value="{{goal.goals}}">
                        
                        
                                      </div>
@@ -104,12 +96,22 @@
                                      <div class="form-group">
                        
                        
-                                        <label>Phone:</label>
+                                        <label>Start Date:</label>
                        
-                                        <input type="number" class="form-control" name="phone" value="{{row.user_password}}">
+                                        <input type="text" class="form-control" name="date_started" value="{{goal.date_started}}">
                        
                        
                                      </div>
+
+                                     <div class="form-group">
+                       
+                       
+                                       <label>End Date:</label>
+                      
+                                       <input type="text" class="form-control" name="date_endgoal" value="{{goal.date_endgoal}}">
+                      
+                      
+                                    </div>
                        
                        
                                      <div class="form-group">
@@ -145,7 +147,7 @@
                       <div class="modal-header">
               
               
-                         <h4 class="modal-title">Add Employee</h4>
+                         <h4 class="modal-title">What is your goal?</h4>
                       </div>
               
               
@@ -154,22 +156,14 @@
               
                          <form action="{{url_for('insert')}}" method="POST">
               
-              
-                            <div class="form-group">
-              
-              
-                               <label>Name:</label>
-                               <input type="text" class="form-control" name="name" required="1">
-              
-              
-                            </div>
+            
 
                             <div class="form-group">
  
  
-                                <label>Email:</label>
+                                <label>Goal:</label>
                
-                                <input type="email" class="form-control" name="email" required="1">
+                                <input type="text" class="form-control" name="goals" required="1">
                
                
                              </div>
@@ -178,13 +172,31 @@
                              <div class="form-group">
                
                
-                                <label>Phone:</label>
+                                <label>Start Date:</label>
                
-                                <input type="number" class="form-control" name="phone" required="1">
+                                <input type="number" class="form-control" name="date_started" required="1">
                
                
                              </div>
+
+                             <div class="form-group">
                
+               
+                              <label>End Date:</label>
+             
+                              <input type="number" class="form-control" name="date_endgoal" required="1">
+             
+             
+                           </div>
+                           
+                           <div class="form-group">
+              
+              
+                              <label>Username:</label>
+                              <input type="text" class="form-control" name="username" required="1">
+                          
+                          
+                           </div>
                
                              <div class="form-group">
                
@@ -193,6 +205,8 @@
                
                
                              </div>
+
+                             
                          </form>
  
  
