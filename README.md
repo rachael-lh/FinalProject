@@ -94,4 +94,4 @@ Although the project achieves the requirements set out in the project brief abov
 
 # Closing Statements 👋🏼
 
-Thank you for taking the time to explore my application and engage with the read.me for further information. 
+Thank you for taking the time to explore my application and engaging with the read.me for further information. 
