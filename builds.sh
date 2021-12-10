@@ -9,14 +9,15 @@ sudo apt install python3-pip
 sudo pip3 install --upgrade pip
 sudo usermod -aG docker $(whoami)
 
-cd db
-docker build -t db-finalproject .
+#cd db
+#docker build -t db-finalproject .
 
-cd ..
+#cd ..
 
-cd flask-app
-pip3 install -r requirements.txt
-docker build -t flask-app-finalproject . 
+#cd flask-app
+#pip3 install -r requirements.txt
+#docker build -t flask-app-finalproject . 
 
-cd ..
+#cd ..
+docker-compose down --rmi all	
 docker-compose up -d
