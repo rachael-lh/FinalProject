@@ -21,6 +21,7 @@ Tools used to achieve the requirements are:
 * Application configuration: Python
 * Containerisation: Docker and Docker Compose
 * Reverse Proxy: NGINX
+* Testing: Pytest
 
 # How I tracked the project 🔎
 
